@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:weather/weather.dart';
 import 'package:weatherapp/constants/err_message.dart';
-import 'package:weatherapp/provider/weather_provider.dart';
-import 'package:weatherapp/screens/weather_screen.dart';
+import 'package:weatherapp/screens/weather/provider/weather_provider.dart';
+import 'package:weatherapp/screens/weather/weather_screen.dart';
 
 
 class LocationProvider with ChangeNotifier{
