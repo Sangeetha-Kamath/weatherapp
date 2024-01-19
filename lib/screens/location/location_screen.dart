@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:weatherapp/constants/err_message.dart';
 import 'package:weatherapp/constants/string_constants.dart';
 import 'package:weatherapp/screens/location/provider/location_provider.dart';
 
@@ -12,14 +13,6 @@ class LocationScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-   
-
-
-   
-
-
-   
-   
     return  Consumer<LocationProvider>(
       builder: (context,locProvider,data) {
         return Scaffold(
@@ -52,7 +45,7 @@ class LocationScreen extends StatelessWidget {
                  separatorBuilder: (context, index){
                     return _seperator(context);
                  } ,
-                 itemCount: locProvider.cityList.length,
+                 itemCount:snapshot.data.length,
                  itemBuilder: (context,index){
                   return InkWell(
                     onTap: (){
@@ -63,7 +56,7 @@ class LocationScreen extends StatelessWidget {
                       Colors.lightGreen:Colors.white,
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: Text(locProvider.cityList[index].name),
+                        child: Text(snapshot.data[index].name),
                       ),
                     ),
                   );
@@ -72,7 +65,7 @@ class LocationScreen extends StatelessWidget {
                   }else if(snapshot.connectionState == ConnectionState.waiting){
                    return Center(child: CircularProgressIndicator());
                   }else{
-                    return Text("No Data Found");
+                    return Text(ErrorMessage.noData);
                   }
         
                 })
@@ -83,7 +76,7 @@ class LocationScreen extends StatelessWidget {
           floatingActionButton: FloatingActionButton(
             backgroundColor: Colors.blue,
           onPressed: () { 
-            locProvider.onPressed(context);
+           locProvider.onPressed(context);
         
            },
           child:Icon(Icons.arrow_right_sharp,)),
